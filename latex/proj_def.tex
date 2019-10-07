@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{amsmath}
+\usepackage[ruled]{algorithm2e}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\title{Project Definition}
+\date{July 29th, 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{Background}
+    \subsection{POMDPs}
+        In a POMDP we assume that the true state $s_t$ that the
+        agent is in is unobserved and evolves according to some dynamics $s_{t+1} \sim T(s_{t+1}|s_t, a_t)$.
+        Instead at each timestep the agent recieves observations $o_t \sim p(o_t | s_t)$, and the agent has
+        to accumulate the information it has seen so far, $o_1,...,o_t$ in order to infer what its true state is.
+        
+
+\end{document}

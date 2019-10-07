@@ -1,0 +1,34 @@
+meta_data:
+  script_path: run_scripts/gen_expert_demos.py
+  exp_name: test_gen_halfcheetah_demos
+  description: Generate demonstrations for imitation learning algorithms
+  num_workers: 1
+  num_gpu_per_worker: 1
+  num_cpu_per_worker: 8
+  mem_per_worker: 16gb
+  partitions: p100,t4,max12hours
+  node_exclusions: gpu048,gpu024,gpu025,gpu027
+# -----------------------------------------------------------------------------
+variables: {}
+
+# -----------------------------------------------------------------------------
+constants:
+  use_scripted_policy: false
+  expert_path: '/scratch/hdd001/home/kamyar/output/sac-halfcheetah/sac_halfcheetah_2019_08_07_00_27_08_0000--s-0/params.pkl'
+  use_deterministic_expert: false
+
+  num_rollouts: 16
+  subsample_factor: 20
+  max_path_length: 1000
+  no_terminal: false
+  check_for_success: false
+
+  render: false
+  render_kwargs: {}
+
+  seed: 723894
+
+  env_specs:
+    env_name: 'halfcheetah'
+    env_kwargs: {}
+    env_seed: 55334

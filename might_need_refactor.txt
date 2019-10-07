@@ -1,0 +1,64 @@
+- really need to clean up get_env
+- same thing as the next two for torch_.....
+- turn metarlalg and metairlalg into subclasses of a common meta alg
+- turn rlalg and irlalg into subclasses of a common alg
+- making a unified interface for meta environments and how to handle observation space, etc.
+- separate rl algorithm from meta-rl algorithm
+- document the parameters of GAIL
+- change the name from GAIL to DAC
+- merge fetch_custom with gail_exp script
+- gen_meta_irl_expert_trajs.py
+    - assuming the policy was trained with rl so it has an exploration policy
+- init for envs
+- policy can't simultaneously use pixels and non-pixel inputs
+- make a subclass of gym Env for a meta env and make it so that it has to have things
+    like iterators etc. and move every constraint in there
+- working with both task_identifiers and task_params and obs_task_params is unintuitive and messy, fix it
+- fix the monkey patching pixels.wrapper
+- how replay buffer handles returning pixels. Right now if you return pixels you also return obs
+- some functions in simple replay buffer are really old and not needed
+- the bug in simple replay buffer due to size being same as max path length
+- removing any trace of expert_replay_buffer
+- in irl_algorithm num_steps_between_updates is a bit weird
+- envs.__init__ is very inefficient (figure out how gym.envs.make works and make something like that)
+- add the files for new and rotated no head fetch environments to the repo
+- either remove or generalize copy over params
+- some things say algo_params some things say policy params
+- clean up ~/local_params and ~/oorl_rlkit/local_params
+- I need to clean up wrapped_goal....
+- documentation for the interface of meta-environments and task_samplers
+- you really need to sort out the yaml files... the nesting structure makes no sense at this point
+- in meta-irl-algorithm freq_eval stuff is ugly
+- fix normalize meta-expert-demos and other normalization scripts
+- need to rethink how meta tasks and meta task samplers are defined, their interfaces, etc.
+- Fully Specific Params Sampler for Fetch has too much copy-paste
+- make gen_meta_irl_expert_trajs more general
+- clean up few_shot_fetch_env.py
+- remove the Wrapped Absorbing Env wrapper
+- remove gen_expert_trajs old version
+- remove the need for train_test_env
+- gen_meta_irl_expert_trajs needs some clean up in fill_buffer
+- unify meta non meta normalization
+- getting ScaledEnv wrapper to handle meta setting more nicely
+- remove few shot hc rand vel eval script and move evertyhig into genral few shot eval script
+- unify the interface for policy_uses_task_params (move it into each algorith individually)
+- add capacity to mix and match tasks with task params samplers
+- remove transfer version from np_airl
+- unify fetch custom and standard versions of experiment scripts
+- fix "best saving" in torch-meta-irl
+- NEED to make it so the for meta tasks, when you wanna get a new env you call get_task_env()
+and you get the env for that task. This will be very useful when you need different xml files
+per task.
+- NEED TO MAKE REPLAY BUFFER MORE GENERAL
+- Need to merge pusher_specific_* with meta_irl_algorhthm etc.
+- clean up pusher policies
+- gen meta irl trajs
+- clean up hc rand vel task params samplers and any others that might need cleaning
+- NEED A BETTER SAVING METHOD so that for example we don't save the expert data and the gradient buffers in the model checkpoint
+- Consider the hack in walker_random_dynamics for single task setting
+- custom_walker_dynamics hack run script for walker experts
+- rename anything with irl to lfd
+- introduce a variable for save best that says don't save best if last save best was within K timesteps
+- remove new ant multi stats from torch irl alg
+
+- need to remove the copy of wrapped_goal.....

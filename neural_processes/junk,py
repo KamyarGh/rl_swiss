@@ -1,0 +1,57 @@
+if iter_num % 1000 == 0:
+        task_batch_idxs = choice(len(all_tasks), size=N_val, replace=False)
+        encoder.eval()
+        r_to_z_map.eval()
+        base_map.eval()
+
+        X, Y = generate_data_batch([all_tasks[i] for i in task_batch_idxs], num_samples_per_task, max_num)
+        N_tasks, N_samples, X_dim = X.size(0), X.size(1), X.size(2)
+        Y_dim = Y.size(2)
+        X = X.view(N_tasks*N_samples, X_dim)
+        Y = Y.view(N_tasks*N_samples, Y_dim)
+
+        r = encoder(torch.cat([X,Y], 1))
+        
+        r_dim = r.size(-1)
+        r = r.view(N_tasks, N_samples, r_dim)
+        r = torch.mean(r, 1)
+        # r = torch.sum(r, 1)
+        mean, log_cov = r_to_z_map(r)
+        cov = torch.exp(log_cov)
+
+        X_test = Variable(torch.linspace(-5, 5, 100))
+        X_test = X_test.repeat(N_val).view(-1,1)
+        z = mean # at test time we take the mean
+        z = local_repeat(z, 100)
+        Y_pred = base_map(z, X_test)
+
+        plots_to_plot = []
+        plot_names = []
+        for i, idx in enumerate(task_batch_idxs):
+            y_true = all_tasks[idx].A * np.sin(np.linspace(-5,5,100) - all_tasks[idx].phase)
+            plots_to_plot.append(
+                [
+                    np.linspace(-5,5,100),
+                    y_true
+                ]
+            )
+            plot_names.append('true %d' % i)
+
+            plots_to_plot.append(
+                [
+                    np.linspace(-5,5,100),
+                    Y_pred[i*100:(i+1)*100].view(-1).data.numpy()
+                ]
+            )
+            plot_names.append('pred %d' % i)
+
+        plot_multiple_plots(
+            plots_to_plot,
+            plot_names,
+            'debug iter %d' % iter_num,
+            'junk_vis/debug_iter_%d.png' % iter_num
+        )
+
+        encoder.train()
+        r_to_z_map.train()
+        base_map.train()

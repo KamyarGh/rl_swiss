@@ -1,0 +1,1036 @@
+money
+convocation tickets
+write-up
+
+
+
+- (done) run walker np_bc
+- (done) run 4 reward walker on gpu with narrower (scale 0.5, 0.25) demos
+- (done) same with also smaller buffer
+- run with stronger discriminator
+
+- implement ant evaluation script
+- run ant evaluation
+- put ant results in the paper
+- run some state-marginal stuff
+- put irl vs. bc evaluations in the table
+SLEEP
+- implement mixture policy training
+
+
+
+
+
+
+
+- (done) generate an artificial plus sign density
+- (done) make a separate script for airl_exp_script for this experiment
+- make a separate script for airl for this experiment
+    - don't forget normalization, gradient penalty, etc.
+- make a low gear ant env just for this experiment
+    - observations are standard things plus xyz
+- run these experiments with a wide range of hyperparameters, disc/policy model, traning settings, etc.
+
+
+
+
+
+
+- (done) plot walker dyn
+- (done) generate walker dyn test replay buffer
+- (done) train a single walker expert with no dynamics variation
+- (done) implement walker rand dyn evaluation script
+- (done) evaluate walker rand dyn current models
+- (done) evaluate single expert walker rand dyn current models
+- (no need) run more walker rand dyn experiments
+    - disc
+    - pol (512 better than 256)
+    - rew (close to 20 seems to be good)
+    - gp
+    - (running larger enc) enc
+
+
+- (done) run eval for super_ants with the first seed
+- (done) make the hyperparameters heatmap plot
+
+
+
+
+- plot ant lin class
+- run more seeds ant lin class
+- run ant lin class state-only
+- plot walker dyn
+- run more walker dyn seeds
+- run walker dyn state-only
+
+
+
+
+- evaluate current ant lin class models
+- evaluate bc version
+- needed run new stuff
+
+- state-only experiments for ant lin classifier
+- state-only experiments for walker
+
+- run multi-ant experiment
+
+- eval all the "basic bc" models (I think I already have run all of them)
+
+- put results in the paper
+
+- train bc variants of all things and put results in the table
+
+
+
+
+- run last super
+
+
+- (done) check what a standard walker expert does on multi-dynamics
+    - /scratch/gobi2/kamyar/oorl_rlkit/output/train-final-walker-expert/train_final_walker_expert_2019_05_10_21_00_41_0000--s-0/
+- (done) make aggregate walker expert
+- (done) generate demos using aggregate walker expert
+- run walker experiments
+- check ant linear classifier results
+- run new ant linear classifier experiments
+- check bc results
+- run new bc exps
+- plan experiments
+- writing
+
+
+
+- (done) implement fetch lin class env
+- (done) implement fetch lin class demo script
+- (done) get fetch lin class demos
+- (done) check ant lin class experiments
+- (done) implement multi-dynamics walker
+- (done) implement multi-dynamics hopper
+- (running) train expert for multi-dynamics hopper
+- (done) run final versions of fairl and airl basic experiments
+- (done) if room on cluster run more super hype searches
+- (running) train expert for multi-dynamics walker
+- rerun ant lin class using the new r2z dim
+- something's wrong check and rerun run fetch lin class experiments
+
+
+- evaluate the walker for the default setting on all other settings
+- 
+
+FEW-SHOT FETCH:
+    - implement the env
+    - generate demos
+    - run initial models
+
+
+ANT MULTI PLAN:
+    At the current hyperparams run:
+        - (done) 512-3-relu disc
+        - (running) 512-3-tanh disc
+        - (done) 128-2-tanh disc
+        - (running) Replacing ant xy-position information with relative position to each of the targets
+
+        ------------
+        - generate a data density plot
+        - put them even farther (16 distance)
+        - make it state-only
+        - indicator variable for in target region
+        ------------
+
+        - Augment with additional variable indicating within target region or not
+            - 512-3-relu
+
+
+ANT LIN CLASS PLAN:
+    - Maybe the disc is not large enough and so it first just focuses on the position but then when it goes to
+        the right positions, is starts paying attention to the linear classification and ignores the position
+    - Need to run it also like the original with a large replay buffer size
+
+
+**) + sign multi-ant
+    - try using smaller disc simialr to the ones you used for single task
+        - maybe even the policy as well?
+    - try putting the targets farther, like 4 distance away
+    FAIRL:
+        Small rb size regime:
+            - (done) high reward low gp
+            - (running) low rew low gp
+            - low rew high gp
+            - high rew high gp
+        Previous regime:
+            - high reward low gp
+            - low rew low gp
+            - low rew high gp
+            - high rew high gp
+3) Run the ant linear classification models with attention encoder
+    - (done) run it
+    - might need to fiddle with gradient penalty a little bit
+    - might need to change observations space to have distance relative to target instead of absolute
+
+*) (done) abstract submission
+*) (done) plot the results from last night for ant linear classification
+    - suprisingly it was ok/good. Need to figure out why it collapsed. Maybe the stuff mentioned above will fix things.
+*) (done) check the things we ran before
+*) (done) run new ones
+
+*) check ant multi
+*) check ant lin class
+*) run airl and maybe humanoid hype search
+*) maybe try "debugging" meta-bc
+*) writing
+
+
+
+
+
+
+
+
+
+
+
+
+1) (done) run some more basic irl vs. bc hype search
+    - (done) run humanoid fairl hype search
+    - (done) run airl ant hype search (4-8-12-16, 4-8-12-16)
+2) (done) Generatre demos for ant linear classification
+3) (done) Run the ant linear classification models with basic encoder
+3) Run the ant linear classification models with convolutional encoder
+
+*) run new humanoid airl hype search
+fairl_final_humanoid_hype_search_no_save_correct_final
+
+
+*) check results from the stuff you ran last night
+Need to check correctness of MLE
+
+4) Generate demos for fetch linear classification
+5) Run fetch models
+6)
+
+SOME TOY TASKS MATCHING STATE-MARGINAL
+
+
+- (done) implement the obtain eval samples
+- (done) check success checker in log statistics (remember normalization of the state)
+- (done) make sure the architecture is reasonable
+- (done) implement the version with a z kernel at each layer
+- (done) do the image checking for the validation set
+- (done) fix saving
+- (done) check that saving works
+- (done) don't forget to remove the thing that trains only on very few tasks
+
+Things to try for meta-bc-pusher:
+- (running) higher lr
+- (done, double-flip) fixing the stupid table texture thing
+- (did it again seems ok) check pre and post normalized X ranges
+- (done) make gifs
+- (done)plot the context you are giving it
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- (DONE) NEEEED TO RENDER BIGGER AND USE ANTI-ALIASING
+- (yeah I think it's good) check if the angle of the camera is correct, I think it is
+- (done forever) Also check action bounds
+- normalization replacing 1e-3 with 1.0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+Morning Schedule:
+2) Implement a trivial and fast-to-train contextual policy that take in the final image and cur_image and outputs action
+    - Try variants of this until you get around 50% performance
+    - Otherwise there is likely a problem
+- check that the MLP output doesnt have any activations
+- check validation set loss
+2) check what Ziyu Wang did for learning from images
+1) Maximum likelihood with gaussian version of both models
+    - the softmax makes the gradients 3 orders of magnitude smaller check that encoder is getting gradients
+3) USE DATA LOADER FOR LOADING TRAINING BATCHES
+3) POST COND KEEPS TAKING Z ON AND OFF GPU, IF ITS A LARGE OBJECT, THEN ROLLOUTS WILL BE SLOW
+3) After trivial contextual model and MLE model, need to check that data loading is good
+    - load a task, render the environment, take the same set of actions, see where the gripper ends up
+3) try pretraining an auto-encoder
+3) need to remove spatial-softmax
+3) even with these models try image-only to make sure gradients go through the images
+3) with and without batchnorm
+
+- plot the spatial softmax activations
+- turn off batch norm everywhere for now
+- (they didn't train with this I think) end effector loss
+- check if you can overfit on one task and when you overfit what is the MSE loss
+
+- try with MLE on Gaussian policy
+- check the action normalizing thing
+- check that policy output doesn't have relus for output
+- save some of the evaluation demos videos
+- start with the context being just a single final image
+- increasing the kernel sizes
+- attention instead of this stupid kernel thing
+- batch norm
+- larger models
+- timestep based encoder
+- learning rate
+- check max_path_length
+
+
+
+Making things work:
+v1):
+    - instead of video only encode the last timestep
+    - even in the last timestep black out everything but the region around the target
+    - check the strides they used in their model
+    - save some of the evaluation demos videos
+    - use meta-batch size 16-1-1
+    - policy model:
+        - (running) v1) encode cur image with a few conv layers, dot product feature-wise with
+            1x1xCH representation gotten from encoding the target, softmax, gate the conv
+            output, concatenate the gated conv output to the original conv output,
+            do the rest of the processing, keep using spatial softmax
+        - add a thing to visualize some of the eval runs
+        - add a thing to visualize some of the x-y maps
+        - maybe use batch norm in policy image processor too
+        - v2) don't use spatial softmax
+        - v2) instead of mult. interaction sigmoid it to make a mask
+        - v3) try without the state
+        - ....
+    - I think they trained on the validation set as well
+
+    - (if still not working):
+        - read their paper and figure out what the extra loss about the eept is?
+        - check that state normalization is correct
+        - read the film paper in more detail
+
+
+
+
+
+
+
+- make a reparam gaussian policy
+- does their additional loss term eept matter?
+- make sure SAC is gonna work with this
+- check what the action limits were in the original pusher environemnt
+
+
+
+
+- check scaling
+- check that the images for the demos and the envs are matched for the train and val sets
+
+
+- (done) implement the meta-pusher env and test it
+- implement meta-bc version and debug it
+- implement obtain_eval_samples
+- implement success evaluation
+- run meta-bc experiments
+
+- make the LRUMeta replay buffer
+- make a new meta-irl-algorithm so you can run meta-airl
+- implement meta-airl
+
+
+
+
+- v0:
+    - (done) encoder always just gets video regardless of whether the discriminator gets image/+state/+action or not
+    - (done) discriminator gets image + state + action and uses spatial softmax
+    - (done) policy gets image + state + action and uses spatial softmax
+    - (done) Q and V same as policy
+- Make a copy of np_airl specifically for this task
+- Add the data-loader to the code
+    - Might need to implement my own data loader so that I can load multiple 
+- Add the environment to the code
+- Make changes to the replay buffer to support images & 
+- DEBUGGING
+
+
+
+hc
+fetch
+new things
+
+
+t3: no nat 10
+t4: nat 5
+t5: 5 no nat
+t6: nat 10
+
+
+
+
+
+
+
+
+
+HC rand vel
+- run debugs of hc rand vel
+    - 5
+    - 9
+    - 9 with adam beta-1 0.25
+- try running np airl with unnormalized data
+- gather final results for hc_np_airl (do you want to be few-shot)
+- gather final results for hc_np_airl state-only
+- gather final results for hc_np_bc
+
+Ant rand goal
+- try with beta-1 0.25 and beta-1 0.9
+
+Fetch
+- fetch few-shot with KL np_airl
+- fetch few-shot with KL np_bc
+
+Ant Fetch
+- (running) train an ant that goes forward and backward
+- check that you can train a meta-airl to imitate the forward backward ant
+- make the script to generate demos for the ant fetch
+- train np airl no KL
+- train np bc no KL
+
+
+
+
+
+- (done) check if 3 layer experts are better than 2 layer
+- (done) generate a lot of demos (64 per task) (det & stoch)
+- (done) check velocity for stochastic
+- (done) check velocity for best bc you have thus far
+- for timestep-based:
+    - check what happens if you share initial weight for s,s'
+    - find best setting
+    - then check if normalizing the demos helps?
+- try s, a, s' version of traj encoder
+- make new conv seq traj encoder
+- fix the master's thesis objective
+- get shit running on the vaughn cluster
+USING 64 demos per task
+- figure out best BC architecture and z dim etc.
+- make np_airl work for halfcheetah
+    - gp amount (10 is better than 1)
+    - grad clip (yes)
+    - batch norm in disc (NOPE)
+    - increase disc size (512 - 3 is the shit)
+    - ReLU FOR THE WIN
+
+    - run with less data (running)
+    - REWARD SCALE SEARCH!!!!!!!! (running)
+    
+    - grad clip for GP
+    - S, A, S'
+    - TRY EVEN LARGER MODEL 1024!
+    - CHECK NEW GRAD CLIP VALUES
+    - reduce replay buffer size
+    - Adam parameters
+    - using a running mean
+    - !! multiple disc steps per policy step (and maybe other big gan choices)
+    - multiple policy steps per disc step
+    - slow down encoder learning rate?
+USING MUCH LESS demos per task
+- figure out best BC architecture and z dim etc.
+- start making np_airl work for halfcheetah
+
+
+
+TRAINING ANT EXPERT:
+    - other form of the environmnet from guided meta-policy search
+    - might need to turn it into half-circle
+    - batch size and num tasks per batch
+    - reward scale
+    - num rollouts between updates
+    - max path length
+    - normalized box env
+
+
+
+
+
+
+
+- (done) plot the grad mags
+- debug meta-fairl by running it on a single task
+- debug by running it on 4 tasks
+- run few shot fetch
+
+
+
+- (done) generate different amounts of demos
+- plot the searches I've done
+- run the final version of things
+    - (done) state-action:
+        - (done) forward
+        - (done) rev
+    - (done) state:
+        - (done) forward
+        - (done) rev
+- implement BC with rev
+- run adv BC:
+    - forward
+    - reverse
+- run for normal BC
+- implement the evaluation script
+
+
+Try different rewards:
+    - Try just using D_c repr instead of q(z) and see if at least that will work
+        - Log the gradients
+        - Probably need to add gradient clipping
+        - T-1 vs. exp(T-1) rewards
+        - larger T clip
+        - rew scales (from 1.0 to high values)
+        - Adam beta1
+        - GP weights
+        - learning rate
+        - increasing model sizes (Q functions etc.)
+        TRYING:
+            - exp(T-1)
+                - T clip 10
+                    - disc enc adam 0.9
+                        - GP 0
+                            - rew scale 1.0
+                                - pol size 64, 128
+                                - clip and center the rewards
+                                - clip it for the disc objective too
+
+            - ? do more policy steps ?
+            - gradient clipping
+            - even using the disc obs preprocessor
+            - make a version with a GAN discriminator
+
+            1) are gradient mags fucking shit up
+            2) for forward KL does my thresholding make any sense
+            3) does the centering of the reward matter
+            4) can you at least train the rev KL with a q model
+
+            1) (run clipping at 40 and 10) change the amount you clip the reward at
+            2) (running rew scale 4, no centering) does the centering matter
+            3) (running rew scale 20) increase reward scale
+            4) use bce loss but use it as forward KL
+
+
+            - learning rate?!
+            - untapered disc objective, tapered RL objective
+                - tanh tapering
+                - linear tapering
+                    - this might need larger reward scale
+            - untapered and unclipped everything
+                - do hype search on reward_scale
+            - using bin classifier for forward KL
+            - use the log of the exp reward
+
+            - 65-65 does not work
+
+            (do these maybe we tanh 5 tapering?)
+            - more iters on disc than gen
+            - more iters on gen than disc
+
+            - don't center
+            - last option, just use the log of the exp reward
+
+
+
+
+    - Try different reward scales for all settings
+    - Try different values of gradient penalty
+    - Try different clip values for T
+    - Change the form of the discriminator
+    - Think if you can do variational inference using other direction KL
+    - Try having disc encoder adam and q model adam being 0.9
+    1) try making the reward be the log of exp(T-1)
+    2) try subtracting a constant from exp(T-1)
+- check implementation for everything including disc architecture
+- make the encoder adam beta1 be 0.9
+- make the range of T larger
+- check meta-irl is implemented correctly
+- check all the evals and trains
+- add the rest of the loss terms
+- when things are working try again with separate encoders
+
+- write the intro
+- write the background:
+    - np bc version
+- write our method
+- write the appendix
+- write the experiments section
+
+
+
+
+
+
+
+
+
+
+- (done) generate data using different amounts of expert demos
+- run AIRL for different amounts of expert demos (make the replay buffer size worth 20 episodes)
+    - (done) First figure out initial hyper parameters
+    - Then run the full experiments
+- implement a cleaner BC algorithm
+- run BC on different amounts of data
+- implement alpha divergence AIRL
+- run experiments for different amounts of data for different alpha values including alpha inf
+
+
+
+
+
+
+
+
+
+- (done) implement getting next obs batch
+- (done) implement it in disc training
+- (done) implement it in policy training
+- (done) log the statistics of the r and V functions
+- (done) implement the discriminator
+- check if they used any regularization terms
+- run experiments
+
+
+
+
+CODE CLEANUP:
+- remove my name from anywhere (CONFIG FILES ETC.)
+
+WRITING:
+- 
+- start the supplementary
+- Look at Kelvin's openreview submission and see what they did wrong
+
+IMPLEMENTATION STUFF:
+- implement few shot evaluation script (without few shot option for now)
+- fixing a broken ELBO KL term
+    - tune it on np_bc
+- implement few shot np_encoder
+- implement few shot version of evaluation script
+- !!!!! script for evaluating whether you can further fine-tune things !!!!!
+- baseline that takes the frozen encoder of np_bc and runs airl using that
+
+THINGS LEFT TO TRY:
+- train with a lot of data in state-only mode and show that you can do better than the expert demos in terms of reward
+- also trying version of the model where I don't use the fancy gating mechanism
+- larger disc models
+- disc having momentum in Adam
+- expert demos for policy optimization
+- (done) (made things more stable) Reduce disc learning rate
+- adam optimizer for the gate
+
+
+
+
+
+
+FOR MAKING THE REACH TASK WORK:
+    - generate demonstrations for the zero single reach task
+    - train it using the best big_gan_hyper_params model
+
+
+- Might need to turn off target disc
+
+
+- temp of the SAC algorithm maybe should be annealed and maybe need to try new temps
+
+
+
+- In the old version of the architectures must also clip the gradient of the grad pen loss!!!! (probably 10.0 or so)
+- Check if the noise in the beginning is actually necessary cause as is I have to run things for at least 100 epochs
+
+- try disc architecture with inductive bias
+    - try my initial version
+    - try my second version
+    - if not worked put exact attention mask on second version
+    - if not worked make the color be exactly -1-1-1 and the other exactly 111
+    - try with action embedding as well
+- try with policy also having a "target" policy
+
+
+
+
+
+
+
+
+- try with less disc iters
+- try more training data (4000)
+- try disc with other params changed
+- try disc with relus
+- make cuda traing + render possible
+
+- discriminator might be able to cheat just by memorizing the specific colors that show up in the
+    expert trajectory episodes
+- is it necessary that the policy batch for disc training is also sampled in a trajectory-oriented way?
+
+- make things work with last 5 and no KL
+- make things work without last 5 and just subsampling, no KL
+- make things work with the previous plus KL
+- make things work with the previous plus variable number of context trajs
+
+Train few shot fetch:
+    - (done) Train lift to center basic models to get a sense of good params
+        - (done) Get expert data
+        - (done) train the bc
+        - (done) train the airl
+    - Train the few shot version
+        - (done) Fix the few shot env to have small target range
+        - (done) Make sure the expert demonstrations are good (visualize them!)
+        - (done) Generate the expert data for lifting to center
+        - (done) implement a way to get an estimate of an upper bound on how well the model could do
+
+        - visualize the np_bc models
+        - try np_bc with reparam tanh multivariate gaussian with proper regularizations
+        - first plan your day
+        - check out why max-min values for the expert demos were weird
+        - if the np_bc model does not train, reduce to like only 5 meta-train tasks, without a meta-test
+            and see how well you could overfit OR increase the amount of demonstrations
+        
+        - start writing
+        
+        - (done) fix the sampling for obtain eval_samples to be unique
+        - (done) fix how you sample random batches, you should sample trajectories then sample batches from the trajs
+
+        - play with different more reasonable architecture sizes for the encoder
+            - while these are training implement the stuff you need for np_airl
+            - might need to try reparam multivariate tanh for np_bc as well
+
+        - Batching for np_airl is making things weird for grad_pen
+        - FIRST THING SET UP NP_AIRL
+            - run the 100 dim policy versions on cpu with a lot of setting
+            - run reasonable hyperparameters (up to 16 experiments) on GPUs as well
+        
+
+        - try much smaller encoder and z dims (maybe 50) to see what happens, even smaller policies (like 2 dims)
+        - try more number of tasks per update
+        - train the np_bc version to figure out architecture sizes and stuff and make sure the same color radius is good
+            - remove the traj_len 5 and instead add subsampling
+                - figure out how much subsampling to use
+                - also try np_bc with convnets and maybe even LSTM
+        - train the np_airl version
+            - add the thing that for each task params setting you generate some number of trajectories before you start training
+    - Before you run the few shot experiments make sure you can reload the policies from checkpoints and that
+        you somehow always save the best checkpoint in addition to all other checkpoints
+    - Add the KL term to this
+    - Try with variable number of context trajs
+    - Try with a variation where you'd train the decoder part for a few iters then backprop to the encoder part
+    - np_airl has an advantage that it can see a lot more combinations of context and test colors, maybe also do
+        a version which the exact colors that are used in episodes are the ones from the expert demos
+
+Few Shot + Uncertainty Evaluation:
+    - Implement evaluation script
+    - Implement having variable number of context trajs
+
+
+
+
+
+
+
+
+
+
+
+- Add evaluation using both train and test task settings
+- NEED to fix in np_bc and np_airl sample_random_batch
+    - I should not be using sample_random_batch since it samples from all available trajectories
+    - I should be sampling the batch from a sampled subset of trajectories
+- Implement something that automatically looks at expert replay buffer
+    and performs the appropriate scalings
+- Make sure few shot fetch env is actually working as well as the expert trajs for it are good
+    - something was weird about the range of observation values
+- Implement a scaling wrapper
+
+- instead of the min-max thing could maybe try whitening by computing a covariance matrix
+
+
+- make the environment
+    - make sure it satisfies the interface from meta-irl envs
+- generate demos
+- convert the demos to proper format
+- update np_airl and np_bc to also maximize log prob(context)
+- run experiments
+- make necessary modifications for running with different context sizes
+- think about the hierarchical thing
+    - gatherer env
+    - maybe some blocks on top of one another and need to be moved
+    - learning to use an API
+    - Kevin Ellis stuff
+- implement the few shot evaluation thing
+- Also should try something where disc only sees the state and for example we change the dynamics
+    and we show that it still works
+- add the KL thing
+
+- need to try initial disc iters
+- need to try with terminal state
+
+
+
+
+- need to handle how it takes very different amounts of time to complete the tasks for fetch (implement terminal states)
+
+- (done) make extra easy env
+- (done) generate noisy demos for extra easy env
+- modify the conversion script to also add the discriminator observations
+- convert the demos
+
+- how many updates per iter
+- how many iters to not train for in the beginning
+- see how that gail pick and place/stack thing paper did it
+- batch norm
+- make demonstrations more temporally extended
+- make demonstrations more noisy
+- add initial D iters
+
+- (done) reduce the learning rate
+- (done) change the demos so they are clipped between -1.0 and 1.0
+    - (done) get the demos
+    - (done) convert them and add to expert list
+- run fetch bc with normalized obs as well
+    - run it with normalized
+    - also add achieved goal to the observations as well
+    - run this version as well
+    - look up how they normalize/preprocess themselves in the HER code
+    - implement anything else that you might need
+- run experiments for AIRL
+
+Getting Fetch Results:
+    - (done) Figure out how to make the data generation script work
+    - Figure out how to get the HER stuff training on multiple cpus
+
+
+AIRL for Fetch:
+    - Read what the diff between the original pick & place and the new one is
+    - (done) Convert demonstrations to the right format
+    - add the environment and env script (or see how you can call it from GYM)
+    - Run AIRL with policy and Q-func that has similar network size as the one 
+
+
+
+Implementing Neural Process Meta-Learner first verions:
+    - (done) implement the main class
+    - (done) buffers:
+        - simple replay buffer
+        - env replay buffer
+    - (done) add sample trajs function to SimpleReplayBuffer
+    - (already done) updating meta env classes so that you can specificy what environment you want to get
+    - (done) implement meta irl algorithm
+        - (don't need this I think) meta in place policy sampler
+        - (don't need this rn I think) implement sampling from the policy for specific task params
+    - (done) handle giving task identifiers to meta-irl
+    - (done) add torch meta irl algorithm
+    - (done) implement a basic trajectory encoder
+        - (done) finish implementing r to z map
+    - (done) fix the interface between encoder and the MetaAIRL algorithm
+
+    - (done) implement an instance of torch rl algorithm that generates "meta-expert-data"
+    - (done) fix the interface between np_bc and meta-expert-sampler
+    - (done) implement train_online for meta irl
+    - (done) implement policies that condition on z
+    - (done) implement the two get expert trajs
+    - (done) implement get exploration policy
+    - (done) fix the trivial encoder
+    - (done) fix _do_training
+        - make the encoder and policy training look nicer
+    - (done) implement obtain_eval_samples
+    - (done) implement evaluate in torch meta irl
+
+    - (done) make a script for populating a meta simple replay buffer with expert data
+    - (done) debug it
+    - (done) debug the meta simple replay buffer
+    - (done) fix meta-irl init parameters
+    - (done) use the pretrained simple meta reacher expert to generate meta expert trajs
+        - fix up the expert traj generation algorithm
+    - (done) debug np_bc
+    - (done) implement the training script for np_bc
+        - use an MlpPolicy
+    
+    - (done) debug task_identifier
+    - (done) debug trivialencoder
+
+    - (done) run initial experiments for np_bc
+
+    - DONT FORGET TO REMOVE:
+        - z is not being sample, taking the means
+        - trivial encoder is only taking the last 5 timesteps (also has to be fixed in train_np_bc where you set input_size)
+
+    - implement subsampling for meta-simple-replay-buffer
+    - !!!! don't forget to add the KL for the elbo objective !!!!
+    - add scheduling for the KL
+    - fixing a broken ELBO
+
+
+    - !!!! don't forget to add the KL for the elbo objective !!!!
+    - debug np_airl
+    - add scheduling for the KL
+    - run np_airl experiments
+
+    - need to clean up task_params, obs_task_params, task_identifier
+        - also consider that maybe expert has access to extra information that is not constant
+            throughout an episode and hence cannot be folded into obs_task_params
+
+    - ?? do the relabeling trick ??
+
+    - I should add an online flag to meta-irl so that the meta train and meta test sets don't need to be finite
+
+
+DEBUGGIN NP_AIRL AND MAKING IT WORK WITHOUT KL:
+    - read over to code to make sure you didn't fuck up
+        - e.g. detaching etc.
+        
+    - The disc is not able to get perfect accuracy
+        - (trying) make discriminator have 3 layers instead of two
+        - The whole model is decently big and you don't have batch norm anywhere except the disc
+        - Use the LSTM version of things
+        - Last resort make models larger
+
+
+
+Figure out why things are running so slowly!!!!!!!
+    - First check if pixel rendering without saving is the culprit or saving the buffer or loading it
+
+Parallel Data Gathering & Training:
+    - MPI stuff
+
+Refactor:
+    - REALLY need to refactor this code at some point to make the 1) DMCS and 2) the meta-learning
+        stuff not possible to have stupid random bugs inside
+
+Evaluation Scripts:
+    - Write a script that takes the save directory and the specific exp_specs variant and evaluates it
+        and generates pixels, then saves the pixels to a directory so that you can see if the model is
+        actually working or not more easily
+
+Getting Meta-IRL to Work:
+    - (done) Implement dmcs for meta-rl algorithms
+        - (done already) Need a new type of replay buffer where we keep track of the task-defining parameters
+    - Implement the meta-reacher environment
+        - (done) Implement a meta-environment for DMCS
+    - (done) YOU WOULD MAYBE WANT TO ADD NEW OBJECTS ETC. TO THE PHYSICS ENGINE SO YOU WOULD NEED
+        TO DO THIS IN THE ENVIRONMENT NOT THE TASK. HENCE JUST FINISH THE WAY YOU WERE DOING IT NOW!
+    - (done) Run meta-reacher experiment
+        - make sure that the shaped rewards are correct
+
+    !!!!!!!!!!!!!!!!! IMPLEMENT THE PIPELINE FOR TAKING A TRAINED MODEL AND GETTING EXPERT REPLAY BUFFER !!!!!!!!!!!
+    - Implement script for taking a trained model checkpoint and generating expert trajectories for:
+        - Non meta IRL
+        - Meta IRL
+
+    - Initial Meta-IRL experiments:
+        - Train a GAIL for simple meta-reacher but not meta version, i.e. concatenate the task params to the
+            input of the policy that is being trained with GAIL
+        - Train the meta-learning version where you just encoder the last K timesteps (K small, concat them, pass
+            to an MLP)
+
+    - !!!!!! Before you do this you need to write the data loader for meta-expert replay buffer
+        so that you know what format to save the expert demonstrations in !!!!!!
+    - !!!!!! Write a script for generating train/test splits for expert trajs !!!!!!
+        - You need a script that first generates a set of train and test task params
+        - Then per train and test param generates two sets of trajectories for train and test
+
+    - Implement meta-irl algorithms
+        - And for makings things run a lot faster for expert data generation, first train the expert
+            with the priviledge information, then once done training load the expert and THEN generate
+            the pixels. This will make things run so much faster
+        - Need meta-train and meta-test splits for expert demonstrations
+        - Since expert demonstrations do not change during training, instead of using the replay buffer
+            implementation, use a pytorch data-loader to make things run a lot faster
+        - Implement a new type of expert replay buffer from which you can:
+            - Sample K tasks
+            - And from each task get however many trajectories you want
+            - And you can instead optionally ask for however many transitions from however many
+                trajs from however many tasks
+
+        - You need to form train and test splits
+
+        - !!!!!!! Run first meta-irl experiments with ground-truth "latents" so you don't have to think
+            about encoding the transitions !!!!!!!!
+            - So essentially make sure that you can train GAIL with directly using the task params
+        
+        - Train the full meta-learning method
+
+    - Add possibility of using the pixel wrapper rendering just for evaluation so you can
+        see that it is doing well
+
+
+- Making things work with deepmind control suite
+    - (done) wrapper for non pixel version
+    - (done) make the wrapper be able to give both a pixel obervation AND the concatenated vector
+    - (done) make rlkit work with a dictionary of observations
+    - (done) make rl algorithms take pixels and obs or just pixels or just obs
+    - (done) make irl algorithms take pixels and obs or just pixels or just obs
+    - (done) Debug
+    - Add a reward for being in the target zone and change the distance to a difference of distance
+        so that it acts as a potential function
+    - implement setter function for SimpleReplayBuffer for the policy_uses_pixels variable
+    - Test GAIL on reacher with DCS
+        - Run reacher and save one eval trajectory per eval cycle
+        - Tune hyperparameters for the GAIL reacher and make sure it's working
+
+
+Thinking about tasks:
+    - The problem with sequential tasks and pretty complicated tasks is that GAIL probably won't work or it'll
+        be really hard to make GAIL work
+    - Need to figure out structured rewards or something for that
+    - You also have to design the tasks such that they are not partially observable
+
+
+
+- Try training GAIL from images
+
+- (done_ Fix batches for AIRL
+- (done) Debug AIRL script
+- (done) Keep track of the discriminator classification accuracy too and plot it
+
+- (done) Implement GAIL
+    - (done) Do the basic GAIL implementation stuff
+    - (done) Figure out batch size, how many trajs, etc.
+    - (done) Reduce the number of expert trajs
+    - (done) Implement a discriminator with Tanh 2 layers 100 hid size and no dropout
+    - (done) I added the WGAN-GP version Add one of the two types of gradient penalty
+    - (done) Make the gail run_script
+    - (done) Figure out the learning rates and stuff
+    - (done) Try training it
+    - (done) Try making discriminator stronger to see if it reduces policy variance
+    - (done) Make it off-policy by increasing the replay buffer size
+- (done) used WGAN-GP, play with using gradient penalty (DRAGAN penalty vs. WGAN-GP penalty)
+- (done) ReLU + scale 5 works well: need to also play with reward scale for SAC
+
+- Make AIRL work for pendulum:
+    - (done) update the AIRL script
+    - (done) compute disc accuracy, reward mean and std
+    - (done) add gradient penalty
+    - (done) READ THROUGH AIRL AND MAKE SURE THE OBJECTIVE IS CORRECT
+    - Play with the batch sizes to figure out what is happening
+    - compare gradient penalty on the reward function, exp of the reward, or discriminator output
+    - compute the integral of the reward function for pendulum
+
+Other things to try for GAIL:
+    - How much does the log(D) - log(1-D) improve things compared to log(D) or -log(1-D)
+    - Think about how to regularize policy optimization for SAC, maybe some trust region method or KFAC
+
+- For making AIRL work, first use the expert policy Advantage as the reward function (don't learn the reward),
+    and use a lot of expert samples
+- Keep track of the integral of the reward function. To approximate it use importance sampling with
+    the policy output distribution
+- Run some experiments
+
+- Maybe first try to get GAIL working with SAC?
+- Right now batches are being sampled reandomly from the buffer, not contiguosly so that they are
+    from the same episode. Try contigous.
+- Maybe a hybrid might even be better where you take random contigous segments?
+
+- play with capacity of the reward model
+- also store the pretanh values so you don't get numerical problems
+- play with how many D vs. G
+- right now keeping replay buffer the same size as batch size, try making it a multiple
+    the batch size so that you are sampling from the past few version of the policy
+- GAIL and AIRL all use TRPO which keeps to policy from changing too much per iteration, maybe
+    you need a regularizer like that too for SAC
+- play with dropout no dropout
+- play with batch size, number of updates
+- play with hid_dim for the reward model
+- Think about regularizing the reward function so it doesn't get too big or too small
+- play with reward scale for SAC if necessary
+
+
+THINGS TO TRY AGAIN IN HARDER TASKS:
+- Make it off-policy by increasing the replay buffer size

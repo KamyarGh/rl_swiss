@@ -1,0 +1,94 @@
+meta_data:
+  script_path: run_scripts/adv_smm_exp_script.py
+  exp_name: check_airl_smm_implementation
+  description: Train an adversarial SMM model
+  num_workers: 1
+  num_gpu_per_worker: 1
+  num_cpu_per_worker: 8
+  mem_per_worker: 16gb
+  partitions: p100,max12hours
+  node_exclusions: gpu048,gpu024,gpu025,gpu012,gpu027
+# -----------------------------------------------------------------------------
+variables:
+  adv_smm_params:
+    grad_pen_weight: [0.1, 0.5]
+  sac_params:
+    reward_scale: [0.25, 0.5, 1.0, 2.0, 4.0, 8.0]
+  # seed: [723894, 23789]
+  seed: [723894]
+
+# -----------------------------------------------------------------------------
+constants:
+  expert_name: 'corl_pusher_sin_trace'
+  expert_idx: 0
+
+  state_indices: [0, 1, 2]
+
+  disc_model_type: resnet_disc
+  disc_num_blocks: 6
+  disc_hid_dim: 128
+  disc_hid_act: tanh
+  disc_use_bn: true
+  disc_clamp_magnitude: 10.0
+
+  policy_net_size: 128
+  policy_num_hidden_layers: 3
+
+  adv_smm_params:
+    mode: 'airl'
+
+    num_epochs: 1001
+    num_steps_per_epoch: 300000
+    num_steps_between_train_calls: 5000
+    max_path_length: 500
+    min_steps_before_training: 2400
+
+    eval_deterministic: false
+    num_steps_per_eval: 5000
+    
+    replay_buffer_size: 50000
+    no_terminal: true
+    wrap_absorbing: false
+
+    num_update_loops_per_train_call: 1
+    num_disc_updates_per_loop_iter: 20
+    num_policy_updates_per_loop_iter: 20
+
+    # warm start the disc
+    # (most likely doesn't need to be this large)
+    num_initial_disc_iters: 1000
+
+    disc_lr: 0.0003
+    disc_momentum: 0.0
+    use_grad_pen: true
+    # grad_pen_weight: 1.0
+    disc_optim_batch_size: 800
+    policy_optim_batch_size: 800
+    policy_optim_batch_size_from_expert: 0
+
+    save_best: false
+    freq_saving: 100
+    save_replay_buffer: false
+    save_environment: false
+    save_algorithm: false
+
+    freq_log_visuals: 1
+
+  sac_params:
+    # reward_scale: 0.25
+    discount: 0.99
+    soft_target_tau: 0.005
+    beta_1: 0.25
+    policy_lr: 0.0003
+    qf_lr: 0.0003
+    vf_lr: 0.0003
+    policy_mean_reg_weight: 0.01
+    policy_std_reg_weight: 0.01
+
+  env_specs:
+    env_name: 'pusher_trace_env'
+    env_kwargs:
+      episode_len: 500
+      obs_with_time: true
+    eval_env_seed: 78236
+    training_env_seed: 24495

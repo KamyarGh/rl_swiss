@@ -24,9 +24,13 @@ Modify exp_specs/gen_exp_demos.yaml appropriately and run:
 ```bash
 python run_experiment.py --nosrun -e exp_specs/gen_exp_demos.yaml
 ```
+Put the path to your expert demos in the expert_demos_listing.yaml file.
+
+### Normalizing the Demonstrations
+Use scripts/normalize_exp_demos.py to normalize the generated demonstrations. As of the time of this writing this script does not take in command-line arguments. In line 108, put the name yo uused for your new entry in the expert_demos_listing.yaml file.
 
 ### Training F/AIRL
-Put the path to your expert demos in expert_demos_listing.yaml. Modify exp_specs/adv_irl.yaml appropriately and run:
+Modify exp_specs/adv_irl.yaml appropriately (specifically, do not forget to replace the name of the expert demos with the name of your new entry in expert_demos_listing.yaml) and run:
 ```bash
 python run_experiment.py --nosrun -e exp_specs/adv_irl.yaml
 ```
